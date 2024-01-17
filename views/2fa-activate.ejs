@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="qr"></div>
+<form method="post" action="/verify">
+    <label><span>OTP</span><input type="text" name="code"></label>
+    <button>Submit</button>
+</form>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+<script>
+    async function getAuth() {
+        const res = await fetch("/2fa-activate", {
+            method: "POST",
+            credentials: "same-origin",
+        }).then(res => res.json());
+        console.log(res.data, res.data.length)
+        const qrcode = new QRCode(document.querySelector("#qr"), {
+            text: res.data,
+            width: 256,
+            height: 256,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+    }
+
+    getAuth();
+
+
+
+</script>
+</html>

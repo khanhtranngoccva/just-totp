@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  development:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    working_dir: "/var/application"
+    volumes:
+      - ".:/var/application"
+    command: "npm run dev"
+    ports:
+      - "4000:4000"
+    networks:
+      - primary-network
+    restart: "on-failure"
+  postgresql:
+    image: postgres:latest
+    ports:
+      - "8888:5432"
+    restart: "on-failure"
+    networks:
+      - primary-network
+    environment:
+      POSTGRES_USER: getOrCreateTotpParameters
+      POSTGRES_PASSWORD: getOrCreateTotpParameters-n00b
+      POSTGRES_DATABASE: getOrCreateTotpParameters
+networks:
+  primary-network:
+    driver: bridge
