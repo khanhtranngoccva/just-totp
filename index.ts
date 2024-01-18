@@ -44,7 +44,6 @@ app.get("/logout", signInRedirect("user"), (req, res) => {
 
 app.post("/2fa-activate", signInRedirect("user"), async (req, res) => {
   const result = await generateTotpUrl(req.user);
-  console.log(result);
   return res.json({
     data: result
   });

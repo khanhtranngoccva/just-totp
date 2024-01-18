@@ -22,7 +22,6 @@
             method: "POST",
             credentials: "same-origin",
         }).then(res => res.json());
-        console.log(res.data, res.data.length)
         const qrcode = new QRCode(document.querySelector("#qr"), {
             text: res.data,
             width: 256,

@@ -21,9 +21,9 @@ services:
     networks:
       - primary-network
     environment:
-      POSTGRES_USER: getOrCreateTotpParameters
-      POSTGRES_PASSWORD: getOrCreateTotpParameters-n00b
-      POSTGRES_DATABASE: getOrCreateTotpParameters
+      POSTGRES_USER: totp
+      POSTGRES_PASSWORD: totp-n00b
+      POSTGRES_DATABASE: totp
 networks:
   primary-network:
     driver: bridge
