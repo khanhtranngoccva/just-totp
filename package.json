@@ -1,16 +1,16 @@
 {
   "name": "totp-generator",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
+  "main": "index.ts",
   "scripts": {
-    "dev": "npx prisma migrate dev -n dev && nodemon --legacy-watch --exec node --loader ts-node/esm index.ts",
+    "dev": "npm install && npx prisma migrate dev -n dev && npx tsx watch index.ts",
     "build": "swc src --out-dir dist/src",
     "build:ci": "tsc && npm run build"
   },
   "author": "",
   "license": "ISC",
   "description": "",
-  "type": "module",
   "dependencies": {
     "@quixo3/prisma-session-store": "^3.1.13",
     "@types/bcrypt": "^5.0.2",
@@ -26,6 +26,7 @@
     "passport-local": "^1.0.0",
     "totp-generator": "^0.0.14",
     "ts-node": "^10.9.2",
+    "tsx": "^4.7.0",
     "typescript": "^5.3.3",
     "zod": "^3.22.4"
   },

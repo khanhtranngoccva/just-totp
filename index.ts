@@ -4,7 +4,6 @@ import {z} from "zod";
 import {signup} from "./domains/user/application.ts";
 import passport from "passport";
 import {signInRedirect} from "./helpers/middleware.ts";
-import * as console from "console";
 import {generateTotpUrl, verifyTotp} from "./domains/verification/totp.ts";
 
 app.get("/signup", signInRedirect("guest"), (req, res) => {
@@ -62,3 +61,4 @@ app.post("/verify", signInRedirect("user"), async (req, res) => {
     return res.redirect("/2fa-activate");
   }
 });
+

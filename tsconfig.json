@@ -25,12 +25,9 @@
   "exclude": [
     "node_modules"
   ],
-  "include": [
-    "*.ts",
-    "./types/**/*.d.ts"
-  ],
   "ts-node": {
     "esm": true,
-    "files": true
+    "files": true,
+    "experimentalSpecifierResolution": "node"
   }
 }

@@ -1,4 +1,6 @@
-FROM node:latest
+FROM node:lts
 LABEL authors="Khanh Tran"
 
-RUN npm install -g nodemon ts-node
+WORKDIR /var/application
+COPY ./ /var/application
+RUN npm install

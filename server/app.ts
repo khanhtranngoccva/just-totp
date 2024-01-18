@@ -4,12 +4,13 @@ import {z} from "zod";
 import {EnvironmentError} from "../helpers/errors.js";
 import * as process from "process";
 import enablePassportAuth from "../configuration/passport/index.ts";
+import {getDirname} from "../directory.ts";
 
 const app = express();
 // Doing this might be vulnerable to XSRF?
 app.use(express.urlencoded());
 app.use(express.json());
-app.use("/static", express.static(path.join(import.meta.dirname, "..", "public")));
+app.use("/static", express.static(path.join(getDirname(import.meta.url), "..", "public")));
 app.set("view engine", "ejs");
 enablePassportAuth(app);
 

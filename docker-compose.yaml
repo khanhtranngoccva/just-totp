@@ -1,18 +1,23 @@
-version: "3.8"
+version: "2.23.3"
 services:
-  development:
-    build:
-      context: .
-      dockerfile: dev.Dockerfile
-    working_dir: "/var/application"
-    volumes:
-      - ".:/var/application"
-    command: "npm run dev"
-    ports:
-      - "4000:4000"
-    networks:
-      - primary-network
-    restart: "on-failure"
+#  development:
+#    build:
+#      context: .
+#      dockerfile: dev.Dockerfile
+#    working_dir: "/var/application"
+#    command: "top -b"
+#    ports:
+#      - "4000:4000"
+#    networks:
+#      - primary-network
+#    restart: "on-failure"
+#    develop:
+#      watch:
+#        - action: sync
+#          path: ./
+#          target: /var/application
+#          ignore:
+#            - node_modules/
   postgresql:
     image: postgres:latest
     ports:

@@ -1,9 +1,8 @@
 import dotenv from "dotenv";
 import path from "path";
-import * as console from "console";
+import {getDirname} from "./directory.ts";
 
-const envPath = path.join(import.meta.dirname, ".env");
-
+const envPath = path.join(getDirname(import.meta.url), ".env");
 
 dotenv.config({
   path: envPath,
