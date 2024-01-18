@@ -12,7 +12,7 @@ declare global {
 
 declare module "express" {
   export interface Request {
-    user: Express.User;
+    user: Express.User|null;
   }
 }
 

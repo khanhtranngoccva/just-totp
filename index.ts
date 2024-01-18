@@ -3,7 +3,7 @@ import app from "./server/app.js";
 import {z} from "zod";
 import {signup} from "./domains/user/application.ts";
 import passport from "passport";
-import {signInRedirect} from "./helpers/middleware.ts";
+import {routeRequiresOtp, signInRedirect} from "./helpers/middleware.ts";
 import {generateTotpUrl, lockTotp, verifyTotp} from "./domains/verification/totp.ts";
 
 app.get("/signup", signInRedirect("guest"), (req, res) => {
@@ -70,3 +70,12 @@ app.post("/verify", signInRedirect("user"), async (req, res) => {
   }
 });
 
+app.get("/email", (req, res) => {
+  res.render("email");
+})
+
+app.post("/email", routeRequiresOtp, async (req, res) => {
+  res.send({
+    email: req.body.email,
+  })
+})

@@ -8,10 +8,16 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Welcome <%= username %>!</h1>
-<a href="/2fa-activate">Activate 2FA</a>
-<a href="/email">Change email</a>
-<a href="/logout">Logout</a>
-
+<form method="post" action="/email">
+    <label>
+        <span>Verification code</span>
+        <input type="text" minlength="8" maxlength="8" name="_otp"/>
+    </label>
+    <label>
+        <span>New Email</span>
+        <input type="email" name="email"/>
+    </label>
+    <button>Submit</button>
+</form>
 </body>
 </html>
