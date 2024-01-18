@@ -4,7 +4,7 @@ import {z} from "zod";
 import {EnvironmentError} from "../helpers/errors.js";
 import * as process from "process";
 import enablePassportAuth from "../configuration/passport/index.ts";
-import {getDirname} from "../directory.ts";
+import {getDirname} from "../helpers/directory.ts";
 
 const app = express();
 // Doing this might be vulnerable to XSRF?
