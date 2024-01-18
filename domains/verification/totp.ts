@@ -3,6 +3,7 @@ import {z} from "zod";
 import * as crypto from "crypto";
 import * as Prisma from '@prisma/client';
 import base32Encode from "base32-encode";
+import * as console from "console";
 
 async function getOrCreateTotpParameters(userId: string) {
   const existing = await prisma.totp.findUnique({
@@ -25,6 +26,9 @@ async function getOrCreateTotpParameters(userId: string) {
 
 export async function generateTotpUrl(user: Prisma.User) {
   const params = await getOrCreateTotpParameters(user.id);
+  if (params.registered) {
+    throw new Error("2FA has already been signed.");
+  }
   const url = new URL(`otpauth://totp/ExampleApp:${user.username}`);
   const base32Secret = hexToBase32(params.secret);
   url.searchParams.set("issuer", "Khanh");
@@ -82,4 +86,15 @@ export async function verifyTotp(user: Prisma.User, inputOtp: string) {
     }
   }
   return false;
+}
+
+export async function lockTotp(userId: string) {
+  await prisma.totp.update({
+    where: {
+      userId: userId
+    },
+    data: {
+      registered: true,
+    }
+  });
 }
