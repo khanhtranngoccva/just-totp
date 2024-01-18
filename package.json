@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --legacy-watch --exec node --loader ts-node/esm index.ts",
+    "dev": "npx prisma migrate dev -n dev && nodemon --legacy-watch --exec node --loader ts-node/esm index.ts",
     "build": "swc src --out-dir dist/src",
     "build:ci": "tsc && npm run build"
   },
